@@ -20,7 +20,7 @@ def get_feasible_vessels(origin, dest, cargo_volume, port_data):
 
 
 port_data = load_port_data('dummy_port_data.csv')  # placeholder for now
-from dummy_forcast_rates import forecast_rates   # adjust filename to match yours
+from forecasting import forecast_rates   # adjust filename to match yours
 
 def recommend_vessel(origin, dest, cargo_volume, contract_duration):
     feasible = get_feasible_vessels(origin, dest, cargo_volume, port_data)
