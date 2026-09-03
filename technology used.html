@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Architecture &amp; Tech Stack</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: [
+              '-apple-system',
+              'BlinkMacSystemFont',
+              '"SF Pro Display"',
+              '"SF Pro Text"',
+              'system-ui',
+              'sans-serif'
+            ],
+          },
+          colors: {
+            appleBg: '#f5f5f7',
+            appleCard: '#ffffff',
+            appleBlue: '#0066cc',
+            appleBlueHover: '#0077ed',
+            appleDark: '#1d1d1f',
+            appleMuted: '#6e6e73',
+            appleBorder: '#d2d2d7',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Typography & Base Styles -->
+<style data-purpose="base-styling">
+    body {
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    
+    /* Hide scrollbar for seamless Apple-like horizontal scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    /* Smooth transition for category items */
+    .category-item {
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), opacity 0.2s ease;
+    }
+    .category-item:active {
+      transform: scale(0.96);
+    }
+  </style>
+<!-- END: Custom Typography & Base Styles -->
+</head>
+<body class="min-h-screen flex flex-col font-sans pb-12">
+<!-- BEGIN: TopBar -->
+<header class="w-full bg-[#f5f5f7]/80 backdrop-blur-md sticky top-0 z-40 border-b border-[#e5e5e7]/80 px-4 sm:px-8 py-3.5 transition-all">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<!-- Minimalist System Badge -->
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-zinc-800 text-white tracking-wide">CORE</span>
+<span class="text-xs font-medium text-[#6e6e73]">Engine Release v2.4</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="inline-flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          Operational
+        </span>
+</div>
+</div>
+</header>
+<!-- END: TopBar -->
+<main class="flex-grow">
+<!-- BEGIN: HeroSection -->
+<section class="max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-8 sm:pb-12" data-purpose="hero-header">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<!-- Hero Primary Title mimicking Apple Store Title -->
+<div>
+<h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-[#1d1d1f]">
+            Tech Stack
+          </h1>
+<p class="text-base sm:text-lg text-[#6e6e73] mt-2 font-normal">
+            Modular architecture designed for predictive modeling &amp; real-time inference.
+          </p>
+</div>
+<!-- Right Side Subtitle & Links matching reference -->
+<div class="md:text-right flex flex-col md:items-end gap-1.5 pt-1">
+<p class="text-lg sm:text-xl font-medium text-[#1d1d1f] tracking-tight">
+            The best tools and frameworks powering the system.
+          </p>
+<div class="flex flex-wrap md:justify-end gap-x-5 gap-y-1 text-sm font-normal pt-1">
+<a class="text-[#0066cc] hover:text-[#0077ed] transition-colors inline-flex items-center gap-1" href="#docs">
+              View Documentation <span class="text-xs font-mono">↗</span>
+</a>
+<a class="text-[#0066cc] hover:text-[#0077ed] transition-colors inline-flex items-center gap-1" href="#github">
+              Open GitHub Repository <span class="text-xs font-mono">↗</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: HorizontalProductCategoryRow -->
+<!-- Direct replication of Apple Store category icons row -->
+<section class="w-full border-b border-[#e5e5e7] pb-10" data-purpose="tech-stack-category-navigation">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex items-center justify-between overflow-x-auto no-scrollbar gap-6 sm:gap-8 pt-2 pb-4 scroll-smooth">
+<!-- Category Item 1: Forecasting -->
+<a class="category-item group flex flex-col items-center flex-shrink-0 cursor-pointer min-w-[84px] sm:min-w-[96px] text-center" href="#forecasting-card">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-sm border border-[#e5e5e7] flex items-center justify-center p-3 group-hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl1VSnzRjUrUN5n0vOdOPMWbDTl3KcUcJi-Zn-JEWmuQLvqwb_pHSn2HEgmFnIh_KBaZbQmvEcU0nQrRN0HyZwQbqX-oD9VZpLXA8QQuDr4YoPcauPjGgQ-tigeWpegbwyDiuvHTxYs6FKe9_3QpLn5AalrHY3BWiTtGCIkHjOVmu7wKZVqSK_8aYGN1Oq7_e4LeujRIY2ztdrE8SUp3QzxZgdq6UeKOv5nsILwm33mgs9D4KVpLOpAG060arXqvHm" alt="Prophet" class="w-9 h-9 sm:w-11 sm:h-11 object-contain"></div>
+<span class="text-xs sm:text-[13px] font-medium text-[#1d1d1f] mt-2.5 group-hover:text-[#0066cc]">Forecasting</span>
+<span class="text-[10px] text-[#6e6e73] font-normal">Prophet &amp; Pandas</span>
+</a>
+<!-- Category Item 2: Recommendation Engine -->
+<a class="category-item group flex flex-col items-center flex-shrink-0 cursor-pointer min-w-[84px] sm:min-w-[96px] text-center" href="#recommendation-card">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-sm border border-[#e5e5e7] flex items-center justify-center p-3 group-hover:shadow-md transition-shadow">
+<!-- Visual Tech Icon: Recommendation / Algorithmic Ranking -->
+<svg class="w-9 h-9 sm:w-11 sm:h-11 text-purple-600" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<circle cx="24" cy="24" fill="#FAF5FF" r="18" stroke="#A855F7" stroke-width="2"></circle>
+<path d="M24 13L26.8 20.2L34.5 20.6L28.5 25.4L30.4 32.8L24 28.6L17.6 32.8L19.5 25.4L13.5 20.6L21.2 20.2L24 13Z" fill="#9333EA"></path>
+<path d="M16 38L32 38" stroke="#D8B4FE" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="text-xs sm:text-[13px] font-medium text-[#1d1d1f] mt-2.5 group-hover:text-[#0066cc]">Rec Engine</span>
+<span class="text-[10px] text-[#6e6e73] font-normal">Rule &amp; Ranking</span>
+</a>
+<!-- Category Item 3: Backend -->
+<a class="category-item group flex flex-col items-center flex-shrink-0 cursor-pointer min-w-[84px] sm:min-w-[96px] text-center" href="#backend-card">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-sm border border-[#e5e5e7] flex items-center justify-center p-3 group-hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ATlZHw8VAXOMTyE6zXAcsw_cknxYeu0cmNFxzn0UBPxrQo_eM7Z8Whe4-T-1Ty4cIx0xCrm28hO18dTRQGE6tgHoAvX4DQUfeOrtzQr7l7SSBGU7m9NXD7l5BejTluYDNkljyI2FVNrwVN6bb4uPADxduTUTu501AZCOwTdNHGGhWuUSIG2nyp8d8iKkhji4g4oYBLWRKJL15wIlQjWHOUP1t9HYJW0vm2V62pT1i4rYeFt_OVEaFoFwAnaXfJnp" alt="Python" class="w-9 h-9 sm:w-11 sm:h-11 object-contain"></div>
+<span class="text-xs sm:text-[13px] font-medium text-[#1d1d1f] mt-2.5 group-hover:text-[#0066cc]">Backend</span>
+<span class="text-[10px] text-[#6e6e73] font-normal">Python Core</span>
+</a>
+<!-- Category Item 4: Dashboard -->
+<a class="category-item group flex flex-col items-center flex-shrink-0 cursor-pointer min-w-[84px] sm:min-w-[96px] text-center" href="#dashboard-card">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-sm border border-[#e5e5e7] flex items-center justify-center p-3 group-hover:shadow-md transition-shadow"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaMKDT-dTJV_hYiBB0beZn-ERrxJhnQcnMpkydA2qEf0mgocC2jwi6RhTkP4D5idy9AD91Zaq5vRAgFpSCSju0xCfI9DLRhwRUEqV54I8MzPC-cLtKcUgiNn--EsrthWxDpKMZu0wDcR5qzvMIw9tSAhMbFEnwrFcQkt--Y0tUn2a8CT9zOwzcti0qbIeqL9BIWJKJEruRSS0A8Bj0UXxZlZ48chcjNWIzXseVa8ih0SBgKD4_oISPnHjYIL13tiY-" alt="Streamlit" class="w-9 h-9 sm:w-11 sm:h-11 object-contain"></div>
+<span class="text-xs sm:text-[13px] font-medium text-[#1d1d1f] mt-2.5 group-hover:text-[#0066cc]">Dashboard</span>
+<span class="text-[10px] text-[#6e6e73] font-normal">Streamlit UI</span>
+</a>
+<!-- Category Item 5: Version Control -->
+<a class="category-item group flex flex-col items-center flex-shrink-0 cursor-pointer min-w-[84px] sm:min-w-[96px] text-center" href="#git-card">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-sm border border-[#e5e5e7] flex items-center justify-center p-3 group-hover:shadow-md transition-shadow">
+<!-- Visual Tech Icon: Git branch / GitHub source -->
+<svg class="w-9 h-9 sm:w-11 sm:h-11 text-zinc-800" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#18181B" height="36" rx="9" width="36" x="6" y="6"></rect>
+<path clip-rule="evenodd" d="M24 13C17.37 13 12 18.37 12 25C12 30.3 15.44 34.8 20.21 36.39C20.81 36.5 21.03 36.13 21.03 35.81C21.03 35.52 21.02 34.56 21.02 33.54C17.68 34.26 16.98 32.08 16.98 32.08C16.44 30.69 15.65 30.32 15.65 30.32C14.56 29.58 15.73 29.6 15.73 29.6C16.94 29.68 17.57 30.84 17.57 30.84C18.64 32.68 20.38 32.15 21.07 31.84C21.18 31.06 21.49 30.53 21.84 30.23C19.18 29.93 16.38 28.9 16.38 24.31C16.38 23 16.85 21.93 17.61 21.1C17.49 20.8 17.08 19.57 17.73 17.92C17.73 17.92 18.73 17.6 21.01 19.15C21.96 18.89 22.98 18.76 24 18.75C25.02 18.76 26.04 18.89 26.99 19.15C29.27 17.6 30.27 17.92 30.27 17.92C30.92 19.57 30.51 20.8 30.39 21.1C31.16 21.93 31.62 23 31.62 24.31C31.62 28.91 28.81 29.93 26.14 30.22C26.57 30.59 26.96 31.33 26.96 32.46C26.96 34.08 26.94 35.39 26.94 35.81C26.94 36.13 27.16 36.51 27.77 36.39C32.55 34.79 36 30.3 36 25C36 18.37 30.63 13 24 13Z" fill="white" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-xs sm:text-[13px] font-medium text-[#1d1d1f] mt-2.5 group-hover:text-[#0066cc]">Repository</span>
+<span class="text-[10px] text-[#6e6e73] font-normal">GitHub CI/CD</span>
+</a>
+</div>
+</div>
+</section>
+<!-- END: HorizontalProductCategoryRow -->
+<!-- BEGIN: DetailedStackSection -->
+<!-- Modular, editable card section displaying detailed specification attributes -->
+<section class="max-w-7xl mx-auto px-5 sm:px-8 pt-10" data-purpose="stack-specifications-grid">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="text-2xl font-bold tracking-tight text-[#1d1d1f]">Module Specifications</h2>
+<p class="text-sm text-[#6e6e73]">Detailed parameter roles, dependencies, and environment status.</p>
+</div>
+<button class="hidden sm:inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full bg-white border border-[#d2d2d7] text-[#1d1d1f] hover:bg-gray-50 shadow-sm transition" type="button">
+          Export Architecture (.json)
+        </button>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- CARD 1: Forecasting Component -->
+<article class="bg-white rounded-3xl p-6 shadow-sm border border-[#e5e5e7] hover:shadow-md transition flex flex-col justify-between" data-purpose="module-spec-card" id="forecasting-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6clPs7kz8IV39Eam1_gGe74zrAE1f3dEqQLlIagAWrB0V5pHSZx_-p14Uj0lRxB15RL7sD2IXRwMJGJ9737gCkplktf7ZoxCFFZjNjciUGVcVeUS22o5o1G1Pf7Y_eOMuV3fkZt2aY0CK_0EOWxvO2Gl5svQofcZezL_NUm1LJ_5FGB_NZJawqClPXrxti51CYkw5OWJbWXmpNWu4t2rdbntnuwGZWAcX2n_YbK8Mk-jC3ol67drxUOjeyYcWeYbn" alt="Prophet" class="w-6 h-6 object-contain"></div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-[#1d1d1f] mt-4">1. Forecasting Engine</h3>
+<p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+              Provides automated decomposable time-series projections with holiday effects and trend seasonality handling.
+            </p>
+<div class="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Primary Framework</span>
+<span class="font-medium text-[#1d1d1f]">Prophet (Meta)</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Data Manipulation</span>
+<span class="font-medium text-[#1d1d1f]">Pandas 2.2</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Inference Latency</span>
+<span class="font-medium text-emerald-600 font-mono">~320ms</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3 flex flex-wrap gap-1.5 items-center">
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Python</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwYBRiJQ9GIZaemiylAVnVJ36MY_qYD4MifYWrWr9eF7IsqUvDHkdN_H8kg07ySEIeD9M7ng82eW_w8F7n6yYQh9v-uHFIVfXibsTZRxsYud0cMExwdbdVWk0fGeiwf0OoptWy-1IzuCzCm8aEGXWa0__UPSvlLkuWc12KoSArtsI5zGXibUntAJUFAZNZHieQxK-jRbRdKskjLnT3M_JBqxsfNQzTWdyVlpvMFU_1pMJnVUNAhdEyd0L-Xzz73BL9" alt="Prophet" class="w-3.5 h-3.5 object-contain inline-block mr-1">Prophet</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Pandas</span>
+</div>
+</article>
+<!-- CARD 2: Recommendation Engine -->
+<article class="bg-white rounded-3xl p-6 shadow-sm border border-[#e5e5e7] hover:shadow-md transition flex flex-col justify-between" data-purpose="module-spec-card" id="recommendation-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB16gfqVod4fTPemsLbuXM7ZV1A1O0vL9WVmnMAYlRqV9KerQdF5iXS6OCIzpVgSENjVmDwgTHTTiPMkmt4iI3vdAst7W00vGUiWBWBrlu_UGjOZjhIdJtuS3jVjc2ItdhJJaXqkJjpqtNaTbNmK-fjrE1Qn26iLwkiwKHm4aQM7wf-rVOmQTG0qWsL4rbMrCW1qfsN2CDB6rUo6N_wuv5aebtJIyMNcc9oum-_HxpCFpHZYmrMyiS8pz3qjEGaSTAg" alt="Python" class="w-6 h-6 object-contain"></div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-[#1d1d1f] mt-4">2. Recommendation Engine</h3>
+<p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+              Deterministic &amp; heuristic algorithmic engine utilizing weighted multi-attribute filtering and dynamic candidate ranking.
+            </p>
+<div class="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Model Strategy</span>
+<span class="font-medium text-[#1d1d1f]">Rule Filtering + Ranking</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Execution Mode</span>
+<span class="font-medium text-[#1d1d1f]">In-Memory Vectorized</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Top-K Candidates</span>
+<span class="font-medium text-purple-600 font-mono">Dynamic (K=50)</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3 flex flex-wrap gap-1.5 items-center">
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Python</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Rule-Based</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Ranking</span>
+</div>
+</article>
+<!-- CARD 3: Backend Orchestration -->
+<article class="bg-white rounded-3xl p-6 shadow-sm border border-[#e5e5e7] hover:shadow-md transition flex flex-col justify-between" data-purpose="module-spec-card" id="backend-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUIZq--3qxxD-rO5w6AokevoGjGz1FTjO85JDTrHW1Dcj4AhGBB5AmIRF_DFscICRg4MfDsnlXoufFXWIJmSHndJEI1ZEWjUhhDibt5VkOHiIVGMzrv-o7y-c-HKtTNpqyy0q17cM2Lp1QVsJ6TSGtjo-YNaCWaGrhkvLOJ0vjX-Ba6bAaW9pUWoFWkkylAWwwtQDkrd5l0QIge74Thlvlfxf7PMSyp-e8j28lX6ZZ9ZAZbfW9-JsoQ31lv08HP0J2" alt="Python" class="w-6 h-6 object-contain"></div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-[#1d1d1f] mt-4">3. Backend Layer</h3>
+<p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+              Orchestrates ETL pipelines, model scheduling, job queues, and high-concurrency API query execution.
+            </p>
+<div class="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Runtime</span>
+<span class="font-medium text-[#1d1d1f]">Python 3.11</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Architecture</span>
+<span class="font-medium text-[#1d1d1f]">Orchestration Service</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">State Management</span>
+<span class="font-medium text-amber-600 font-mono">Stateless Workers</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3 flex flex-wrap gap-1.5 items-center">
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Python</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Async IO</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Orchestrator</span>
+</div>
+</article>
+<!-- CARD 4: Dashboard Interface -->
+<article class="bg-white rounded-3xl p-6 shadow-sm border border-[#e5e5e7] hover:shadow-md transition flex flex-col justify-between" data-purpose="module-spec-card" id="dashboard-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_PEoz27sitfGLNa5vM_zdcAlvFywNGl0YF2y5VDwcw0ZIlOPYVrBHLOAKga4M0RsPFga2SqCaSU4_THr7fd1xobUKjZzig3pUmh0HVF5y36SGO-FCSyfG38GcsvpKcRjJHTD-8_oJlLth7U5njxcoxWMrYjvpWhCZ_YeeqnKvIM-oUO8-5h9LHa1l7myjw8uDl4of-46Uh4tvpbWKQsZvcpC-THOqwqlAI7wxtbgyjoi_u57uBqOq-AuT0Cxdm_hx" alt="Streamlit" class="w-6 h-6 object-contain"></div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-[#1d1d1f] mt-4">4. Dashboard &amp; UI</h3>
+<p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+              Interactive analytics portal for business analysts, offering live forecast visualizers and parameterized controls.
+            </p>
+<div class="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Interface Framework</span>
+<span class="font-medium text-[#1d1d1f]">Streamlit v1.34</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Rendering</span>
+<span class="font-medium text-[#1d1d1f]">Reactive WebSocket</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">User Access</span>
+<span class="font-medium text-rose-600 font-mono">Role-Based (SSO)</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3 flex flex-wrap gap-1.5 items-center">
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYEmZJsrLrw0zvYfg_l4fhF0tKj7IGklWJXHvpq6bS5vsgZnUyUD7348iT-YxTXobPKPmcIMNBSYzAzH9nhdLSkeK6LFdjSbwspZVZ0FuBKTqoQKHcnBrKY6ukXMN4m164p1lXhetZsrh8fXT_47ZIW-Ts_6sW3PhDCfb6mGt1Lr1PNMTgbgx2tCNfxWZdH0zfIXgDXBuBvx6WFAzIoAYJnNjY2d2yYTSNTxt7FvK7pL41dTKKU1340ZncPD7wucZ9" alt="Streamlit" class="w-3.5 h-3.5 object-contain inline-block mr-1">Streamlit</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Web Analytics</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Reactive</span>
+</div>
+</article>
+<!-- CARD 5: Version Control -->
+<article class="bg-white rounded-3xl p-6 shadow-sm border border-[#e5e5e7] hover:shadow-md transition flex flex-col justify-between" data-purpose="module-spec-card" id="git-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center">
+<svg class="w-6 h-6 text-zinc-900" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-[#1d1d1f] mt-4">5. Version Control &amp; CI</h3>
+<p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+              Maintains continuous automated test suites, pull request validations, semantic tagging, and deployment actions.
+            </p>
+<div class="mt-4 pt-4 border-t border-gray-100 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Platform</span>
+<span class="font-medium text-[#1d1d1f]">GitHub Enterprise</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Automation Pipeline</span>
+<span class="font-medium text-[#1d1d1f]">GitHub Actions</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#6e6e73]">Branch Protection</span>
+<span class="font-medium text-zinc-800 font-mono">Strict PR / Review</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3 flex flex-wrap gap-1.5 items-center">
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">GitHub</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">CI/CD</span>
+<span class="px-2.5 py-1 rounded-md bg-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f]">Git</span>
+</div>
+</article>
+<!-- CARD 6: System Orchestration Meta -->
+<article class="bg-[#1d1d1f] text-white rounded-3xl p-6 shadow-sm flex flex-col justify-between" data-purpose="module-spec-card">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-white/10 text-white border border-white/20">
+                Summary
+              </span>
+</div>
+<h3 class="text-xl font-semibold text-white mt-4">System Integration</h3>
+<p class="text-xs text-[#a1a1a6] mt-1 leading-relaxed">
+              Every tier communicates seamlessly via clean RESTful payloads, isolated execution steps, and declarative configuration.
+            </p>
+<div class="mt-4 pt-4 border-t border-white/10 space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#a1a1a6]">Total Nodes</span>
+<span class="font-medium text-white">5 Modules</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#a1a1a6]">System Health</span>
+<span class="font-medium text-emerald-400">Optimal (99.9%)</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-3">
+<a class="w-full py-2.5 px-4 rounded-xl bg-white text-[#1d1d1f] text-xs font-semibold text-center hover:bg-gray-100 transition inline-block" href="#github">
+              Open Full Repository
+            </a>
+</div>
+</article>
+</div>
+</section>
+<!-- END: DetailedStackSection -->
+</main>
+<!-- BEGIN: MinimalFooter -->
+<footer class="max-w-7xl mx-auto w-full px-5 sm:px-8 mt-16 pt-6 border-t border-[#e5e5e7] text-xs text-[#86868b] flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="">© 2026 Tech Stack Blueprint. Styled in adherence to Apple design language.</p>
+<div class="flex items-center space-x-4">
+<a class="hover:underline" href="#">Privacy Policy</a>
+<span class="">|</span>
+<a class="hover:underline" href="#">Documentation</a>
+<span class="">|</span>
+<a class="hover:underline" href="#">System Status</a>
+</div>
+</footer>
+<!-- END: MinimalFooter -->
+
+
+
+
+</body></html>
