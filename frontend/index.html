@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteelRoute AI — Intelligent Freight Forecasting</title>
+  <meta name="description" content="AI-powered freight forecasting for optimized vessel chartering and bulk cargo procurement to India's East Coast. Ministry of Steel, SIH 2026.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Leaflet.js for maps -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Plotly.js for charts -->
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <!-- Our styles -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- ═══════════ TOP NAV ═══════════ -->
+    <nav class="top-nav" id="top-nav">
+      <div class="brand">
+        <div class="brand-icon">⚓</div>
+        <span class="brand-name">SteelRoute AI</span>
+        <span class="brand-badge">SIH 2026</span>
+      </div>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span>System Operational</span>
+      </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero animate-in" id="hero">
+      <h1 class="hero-title">
+        Intelligent Freight Forecasting for<br>
+        <span class="gradient-text">Optimized Vessel Chartering</span>
+      </h1>
+      <p class="hero-subtitle">
+        AI-powered cost optimization for bulk cargo procurement from overseas to India's East Coast — Ministry of Steel
+      </p>
+      <div class="hero-tag">
+        🏛️ SIH26006 · Smart Automation · Team Mindless Gamers · DTU
+      </div>
+    </section>
+
+    <!-- ═══════════ ROUTE PLANNER ═══════════ -->
+    <div class="planner-grid">
+
+      <!-- Left: Form -->
+      <div class="glass-card animate-in" id="planner-card">
+        <div class="card-header">
+          <span class="card-title"><span class="icon">🗺️</span> Route Planner</span>
+        </div>
+        <form id="optimize-form" class="form-section">
+          <div class="input-group">
+            <label for="origin-select">Origin Port</label>
+            <select id="origin-select" required>
+              <option value="">Loading ports...</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="dest-select">Destination Port (East Coast India)</label>
+            <select id="dest-select" required>
+              <option value="">Loading ports...</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="cargo-input">Cargo Volume (Metric Tonnes)</label>
+            <input type="number" id="cargo-input" value="100000" min="10000" max="200000" step="5000">
+          </div>
+          <div class="input-group">
+            <label for="days-input">Forecast Horizon (Days)</label>
+            <input type="number" id="days-input" value="90" min="7" max="365" step="1">
+          </div>
+          <button type="submit" class="btn-primary" id="optimize-btn">
+            <span id="btn-text">⚡ Analyze & Optimize</span>
+            <div class="spinner" id="btn-spinner" style="display:none;"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Map -->
+      <div class="glass-card animate-in map-section" id="map-card">
+        <div class="card-header">
+          <span class="card-title"><span class="icon">🌍</span> Shipping Route</span>
+        </div>
+        <div id="route-map"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ RESULTS SECTION (hidden until optimize) ═══════════ -->
+    <div id="results-section" style="display: none;">
+
+      <!-- KPI Metrics -->
+      <div class="kpi-grid" id="kpi-grid">
+        <div class="glass-card kpi-card animate-in">
+          <div class="kpi-label">Total Landed Cost</div>
+          <div class="kpi-value blue" id="kpi-total-cost">—</div>
+          <div class="kpi-sub" id="kpi-cost-per-mt">per MT</div>
+        </div>
+        <div class="glass-card kpi-card animate-in">
+          <div class="kpi-label">Recommended Vessel</div>
+          <div class="kpi-value green" id="kpi-vessel">—</div>
+          <div class="kpi-sub" id="kpi-vessel-sub">type</div>
+        </div>
+        <div class="glass-card kpi-card animate-in">
+          <div class="kpi-label">Potential Savings</div>
+          <div class="kpi-value purple" id="kpi-savings">—</div>
+          <div class="kpi-sub">vs. average timing</div>
+        </div>
+        <div class="glass-card kpi-card animate-in">
+          <div class="kpi-label">Best Charter Window</div>
+          <div class="kpi-value amber" id="kpi-window">—</div>
+          <div class="kpi-sub" id="kpi-window-sub">days from now</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-grid">
+        <div class="glass-card animate-in" id="forecast-card">
+          <div class="card-header">
+            <span class="card-title"><span class="icon">📈</span> Freight Rate Forecast</span>
+          </div>
+          <div id="freight-chart" class="chart-container"></div>
+        </div>
+        <div class="glass-card animate-in" id="cost-donut-card">
+          <div class="card-header">
+            <span class="card-title"><span class="icon">🍩</span> Cost Breakdown</span>
+          </div>
+          <div id="cost-donut" class="chart-container"></div>
+        </div>
+      </div>
+
+      <!-- Fuel & Commodity Chart -->
+      <div class="glass-card animate-in" id="market-card" style="margin-bottom: 32px;">
+        <div class="card-header">
+          <span class="card-title"><span class="icon">⛽</span> Market Indicators — Fuel & Commodity Prices</span>
+        </div>
+        <div id="market-chart" class="chart-container"></div>
+      </div>
+
+      <!-- Vessel Comparison -->
+      <div class="card-header" style="margin-bottom: 8px;">
+        <span class="card-title" style="font-size: 1.1rem;"><span class="icon">🚢</span> Vessel Comparison — Top 3 Recommendations</span>
+      </div>
+      <div class="vessel-grid" id="vessel-grid">
+        <!-- Dynamically populated -->
+      </div>
+
+      <!-- Optimal Timing -->
+      <div class="glass-card animate-in" id="timing-card" style="margin-bottom: 32px;">
+        <div class="card-header">
+          <span class="card-title"><span class="icon">⏱️</span> Optimal Chartering Timing</span>
+        </div>
+        <div id="timing-content"></div>
+      </div>
+
+    </div>
+
+    <!-- Results Placeholder (shown before first optimization) -->
+    <div id="results-placeholder">
+      <div class="glass-card results-placeholder">
+        <div class="placeholder-icon">🚢</div>
+        <p class="placeholder-text">
+          Select an origin port, destination, and cargo volume above, then click <strong>Analyze & Optimize</strong> to see intelligent freight forecasting and vessel recommendations.
+        </p>
+      </div>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+      <p>SteelRoute AI · SIH26006 · Ministry of Steel · Team Mindless Gamers · DTU Delhi</p>
+      <p style="margin-top: 4px;">Powered by Prophet, FastAPI & Plotly.js</p>
+    </footer>
+  </div>
+
+  <!-- App Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
