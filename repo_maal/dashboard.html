@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Maritime Intelligence — SIH 2026</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">MI</div>
+        <div><strong>Maritime</strong><span>Intelligence</span></div>
+      </div>
+      <div class="side-label">SIH 2026</div>
+      <nav>
+        <button class="nav-item active" data-section="overview"><span>⌂</span> Overview</button>
+        <button class="nav-item" data-section="recommend"><span>◈</span> Vessel Advisor</button>
+        <button class="nav-item" data-section="forecast"><span>⌁</span> Rate Forecast</button>
+        <button class="nav-item" data-section="ports"><span>◎</span> Port Network</button>
+        <button class="nav-item" data-section="architecture"><span>◇</span> Architecture</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="status"><i></i><span>Decision engine online</span></div>
+        <small>Predictive maritime planning</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="crumb"><span>SIH 2026</span><b>/</b><strong id="pageTitle">Overview</strong></div>
+        <div class="top-actions"><span class="live-dot"></span><span>Model workspace</span><div class="avatar">SI</div></div>
+      </header>
+
+      <section class="content section active" id="overview">
+        <div class="hero">
+          <div>
+            <div class="eyebrow">SMART VESSEL & FREIGHT PLANNING</div>
+            <h1>Turn vessel data into <em>better decisions.</em></h1>
+            <p>A decision-support dashboard for vessel selection, port feasibility and freight-rate intelligence.</p>
+            <div class="hero-actions"><button class="primary" data-jump="recommend">Open Vessel Advisor <span>→</span></button><button class="ghost" data-jump="forecast">View Forecast</button></div>
+          </div>
+          <div class="hero-orbit"><div class="orbit o1"></div><div class="orbit o2"></div><div class="ship">⚓</div><span class="orbit-label l1">PORT</span><span class="orbit-label l2">RATE</span><span class="orbit-label l3">VESSEL</span></div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span>Vessel classes</span><strong>04</strong><small>Handysize → Capesize</small></article>
+          <article class="stat-card"><span>Port nodes</span><strong>12</strong><small>Origin & destination network</small></article>
+          <article class="stat-card"><span>Historical BDI</span><strong>1985–2013</strong><small>Clean daily series in repository</small></article>
+          <article class="stat-card accent"><span>Recommendation logic</span><strong>7-day</strong><small>Best timing window</small></article>
+        </div>
+
+        <div class="grid-two">
+          <article class="panel chart-panel">
+            <div class="panel-head"><div><span class="kicker">MARKET SIGNAL</span><h2>Baltic Dry Index</h2></div><span class="pill">Historical</span></div>
+            <div class="chart-wrap"><canvas id="bdiChart"></canvas></div>
+            <div class="chart-foot"><span>Source: <b>bdi_clean.csv</b></span><span>Cleaned daily series</span></div>
+          </article>
+          <article class="panel insight-panel">
+            <div class="panel-head"><div><span class="kicker">DECISION FLOW</span><h2>How the engine works</h2></div></div>
+            <div class="flow"><div><b>01</b><span>Route constraints</span><small>Draft, LOA, beam & cargo</small></div><div><b>02</b><span>Feasible vessels</span><small>Filter by vessel specs</small></div><div><b>03</b><span>Rate intelligence</span><small>Forecast vessel-adjusted rates</small></div><div><b>04</b><span>Timing window</span><small>Rank the lowest-cost 7-day window</small></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content section" id="recommend">
+        <div class="section-heading"><div><div class="eyebrow">VESSEL ADVISOR</div><h1>Find the best-fit vessel.</h1><p>Use the same feasibility constraints implemented in the repository's vessel simulator.</p></div><span class="engine-badge">● ENGINE READY</span></div>
+        <div class="advisor-grid">
+          <article class="panel form-panel">
+            <div class="panel-head"><div><span class="kicker">ROUTE INPUT</span><h2>Voyage parameters</h2></div></div>
+            <label>Origin port<select id="origin"></select></label>
+            <label>Destination port<select id="destination"></select></label>
+            <label>Cargo volume <div class="input-suffix"><input id="cargo" type="number" min="1" value="55000"><span>tonnes</span></div></label>
+            <label>Contract duration <div class="input-suffix"><input id="duration" type="number" min="1" value="30"><span>days</span></div></label>
+            <button class="primary full" id="recommendBtn">Run recommendation <span>→</span></button>
+            <div class="form-note">Feasibility uses the minimum draft of origin and destination, then checks vessel DWT capacity.</div>
+          </article>
+          <article class="panel result-panel" id="resultPanel">
+            <div class="result-empty" id="resultEmpty"><div class="result-icon">◈</div><h2>Your recommendation will appear here</h2><p>Enter a route and cargo requirement, then run the decision engine.</p></div>
+            <div class="result-content hidden" id="resultContent">
+              <div class="recommend-banner"><span>RECOMMENDED VESSEL</span><strong id="recommendedVessel">—</strong><b id="recommendedRate">—</b></div>
+              <div class="result-grid"><div><span>Route</span><strong id="routeOut">—</strong></div><div><span>Allowed draft</span><strong id="draftOut">—</strong></div><div><span>Best timing window</span><strong id="windowOut">—</strong></div><div><span>Window avg. rate</span><strong id="windowRate">—</strong></div></div>
+              <div class="vessel-list" id="vesselList"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content section" id="forecast">
+        <div class="section-heading"><div><div class="eyebrow">RATE FORECAST</div><h1>Market outlook.</h1><p>The repository's Prophet pipeline models vessel-adjusted BDI rates using a log transform.</p></div></div>
+        <div class="forecast-grid">
+          <article class="panel forecast-main"><div class="panel-head"><div><span class="kicker">MODEL OUTPUT</span><h2>Forecast artifact</h2></div><span class="pill">Panamax · 90 days</span></div><div class="forecast-image"><img src="bdi_forecast_plot.png" alt="Baltic Dry Index 90-day forecast" onerror="this.parentElement.classList.add('missing');this.style.display='none'"><div class="missing-copy">Run <code>python forecasting.py</code> to regenerate the repository forecast artifact.</div></div></article>
+          <article class="panel model-card"><span class="kicker">MODEL PIPELINE</span><h2>Prophet + vessel multipliers</h2><p>The forecasting module fits Prophet on log-transformed BDI data and applies approximate vessel multipliers before converting predictions back to rate space.</p><div class="multiplier"><span>Capesize</span><b>1.50×</b></div><div class="multiplier"><span>Panamax</span><b>1.00×</b></div><div class="multiplier"><span>Supramax</span><b>0.80×</b></div><div class="multiplier"><span>Handysize</span><b>0.60×</b></div></article>
+        </div>
+      </section>
+
+      <section class="content section" id="ports">
+        <div class="section-heading"><div><div class="eyebrow">PORT NETWORK</div><h1>Route constraints at a glance.</h1><p>Port attributes currently available in <code>port_data.py</code>.</p></div></div>
+        <div class="panel table-panel"><div class="table-toolbar"><input id="portSearch" placeholder="Search ports…"><span id="portCount">12 ports</span></div><div class="table-scroll"><table><thead><tr><th>Port</th><th>Country</th><th>Type</th><th>Max draft</th><th>Max LOA</th><th>Max beam</th><th>Handling rate</th><th>Source</th></tr></thead><tbody id="portTable"></tbody></table></div></div>
+      </section>
+
+      <section class="content section" id="architecture">
+        <div class="section-heading"><div><div class="eyebrow">SYSTEM ARCHITECTURE</div><h1>Built for explainable decisions.</h1><p>A clear chain from route constraints to an actionable recommendation.</p></div></div>
+        <div class="architecture-grid"><article class="arch-card"><span>01</span><h2>Data layer</h2><p>Cleaned BDI history plus structured port constraints form the decision inputs.</p><code>bdi_clean.csv</code><code>dummy_port_data.csv</code></article><article class="arch-card"><span>02</span><h2>Forecasting</h2><p>Prophet models the market signal independently for each vessel class through scaling multipliers.</p><code>forecasting.py</code></article><article class="arch-card"><span>03</span><h2>Recommendation</h2><p>Route feasibility filters vessel classes, then rate forecasts are ranked across the contract period.</p><code>Vessel_simulator.py</code></article><article class="arch-card"><span>04</span><h2>Decision UI</h2><p>This dashboard makes the inputs, constraints and outputs easy to inspect during an SIH demo.</p><code>dashboard.html</code></article></div>
+      </section>
+
+      <footer><span>SIH 2026 · Maritime Intelligence</span><span>Decision support, not a substitute for operational verification.</span></footer>
+    </main>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
