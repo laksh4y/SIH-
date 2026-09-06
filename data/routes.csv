@@ -1,0 +1,15 @@
+route_id,origin_port_id,dest_port_id,distance_nm,typical_vessel,cargo_type,avg_speed_knots
+AUS-PRD,AUNEW,INPRD,5840,Capesize,Coking Coal,13.5
+AUS-VTZ,AUNEW,INVTZ,5650,Capesize,Coking Coal,13.5
+AUS-GAN,AUNEW,INGAN,5640,Capesize,Coking Coal,13.5
+AUS-DHR,AUNEW,INDHR,5780,Capesize,Coking Coal,13.5
+AUS-HAL,AUNEW,INHAL,5900,Panamax,Coking Coal,12.5
+MOZ-VTZ,MZNAC,INVTZ,3500,Panamax,Thermal Coal,12.5
+MOZ-PRD,MZNAC,INPRD,3650,Panamax,Thermal Coal,12.5
+RUS-PRD,RUVOS,INPRD,4800,Capesize,Coking Coal,13.0
+US-VTZ,USHOU,INVTZ,10200,Panamax,Met Coke,12.0
+IDN-HAL,IDSAM,INHAL,3100,Handysize,Thermal Coal,11.0
+IDN-GPL,IDSAM,INGPL,2800,Handysize,Thermal Coal,11.0
+RUS-GAN,RUVOS,INGAN,4750,Capesize,Coking Coal,13.0
+MOZ-DHR,MZNAC,INDHR,3700,Panamax,Thermal Coal,12.5
+AUS-GPL,AUNEW,INGPL,5500,Supramax,Coking Coal,12.0

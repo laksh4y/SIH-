@@ -29,7 +29,7 @@ def recommend_vessel(origin, dest, cargo_volume, contract_duration):
     
     # get full day-by-day forecast ONCE per vessel type
     forecasts = {
-        v: [forecast_rates(v, d) for d in range(1, contract_duration + 1)]
+        v: [forecast_rates(v, d)['predicted_rate'] for d in range(1, contract_duration + 1)]
         for v in feasible
     }
     

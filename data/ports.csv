@@ -1,0 +1,13 @@
+port_id,port_name,country,port_type,lat,lon,max_draft_m,max_loa_m,max_beam_m,cargo_handling_rate_tpd,berth_count,typical_congestion_days,data_source
+AUNEW,Newcastle,Australia,origin,-32.93,151.78,16.2,300,50,2000,18,2,verified
+USHOU,Houston,United States,origin,29.76,-95.36,13.1,275,44,1500,12,3,estimated
+MZNAC,Nacala,Mozambique,origin,-14.56,40.69,15.0,280,45,1200,6,4,estimated
+RUVOS,Vostochny,Russia,origin,42.75,133.08,16.5,300,50,1800,10,2,estimated
+IDSAM,Samarinda,Indonesia,origin,-0.49,117.15,9.0,200,32,800,4,3,estimated
+INPRD,Paradip,India,destination,20.26,86.63,16.5,300,46,1800,12,3,verified
+INVTZ,Vizag,India,destination,17.69,83.29,16.5,300,42,1700,10,2,verified
+INGAN,Gangavaram,India,destination,17.63,83.24,18.0,300,48,2000,4,1,verified
+INGPL,Gopalpur,India,destination,19.26,84.90,13.0,200,32,1000,3,4,estimated
+INDHR,Dhamra,India,destination,20.78,86.92,18.5,300,50,2000,4,1,estimated
+INSAG,Sagar-Sandheads,India,destination,21.65,88.05,8.5,172,24.3,900,2,5,verified
+INHAL,Haldia,India,destination,22.02,88.06,9.0,240,32.26,1000,8,5,verified
