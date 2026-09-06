@@ -1,0 +1,141 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --ocean: #087f74;
+  --ink: #192e3a;
+  --paper: #ffffff;
+  --slate: #687d8b;
+  --sea-glass: #9bbfc9;
+  --background: color-mix(in srgb, var(--ink) 3.5%, var(--paper));
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ocean);
+  --primary-foreground: var(--paper);
+  --secondary: color-mix(in srgb, var(--ocean) 8%, var(--paper));
+  --secondary-foreground: var(--ocean);
+  --muted: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --muted-foreground: var(--slate);
+  --accent: color-mix(in srgb, var(--ocean) 7%, var(--paper));
+  --accent-foreground: var(--ocean);
+  --destructive: var(--ink);
+  --border: color-mix(in srgb, var(--ink) 11%, var(--paper));
+  --input: color-mix(in srgb, var(--ink) 16%, var(--paper));
+  --ring: var(--ocean);
+  --chart-1: var(--ocean);
+  --chart-2: var(--slate);
+  --chart-3: var(--sea-glass);
+  --chart-4: var(--ink);
+  --chart-5: color-mix(in srgb, var(--ocean) 45%, var(--sea-glass));
+  --sidebar: var(--ink);
+  --sidebar-foreground: color-mix(in srgb, var(--paper) 74%, var(--ink));
+  --sidebar-primary: var(--sea-glass);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: color-mix(in srgb, var(--paper) 10%, var(--ink));
+  --sidebar-accent-foreground: var(--paper);
+  --sidebar-border: color-mix(in srgb, var(--paper) 12%, var(--ink));
+  --sidebar-ring: var(--sea-glass);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: color-mix(in srgb, var(--ink) 90%, #000000);
+  --foreground: color-mix(in srgb, var(--paper) 91%, var(--ink));
+  --card: var(--ink);
+  --card-foreground: var(--foreground);
+  --popover: var(--ink);
+  --popover-foreground: var(--foreground);
+  --primary: var(--sea-glass);
+  --primary-foreground: var(--ink);
+  --secondary: color-mix(in srgb, var(--sea-glass) 12%, var(--ink));
+  --secondary-foreground: var(--sea-glass);
+  --muted: color-mix(in srgb, var(--paper) 5%, var(--ink));
+  --muted-foreground: color-mix(in srgb, var(--slate) 60%, var(--paper));
+  --accent: color-mix(in srgb, var(--sea-glass) 12%, var(--ink));
+  --accent-foreground: var(--sea-glass);
+  --destructive: var(--foreground);
+  --border: color-mix(in srgb, var(--paper) 12%, var(--ink));
+  --input: color-mix(in srgb, var(--paper) 20%, var(--ink));
+  --ring: var(--sea-glass);
+  --chart-1: var(--sea-glass);
+  --chart-2: color-mix(in srgb, var(--slate) 60%, var(--paper));
+  --chart-3: var(--ocean);
+  --chart-4: var(--paper);
+  --chart-5: color-mix(in srgb, var(--ocean) 45%, var(--sea-glass));
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-ocean: var(--ocean);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-sea-glass: var(--sea-glass);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]) { cursor: pointer; }
+  ::selection { background: var(--secondary); color: var(--secondary-foreground); }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .page-enter { animation: page-enter 360ms ease-out both; }
+  .map-dot { transition: r 180ms ease, opacity 180ms ease; }
+  .hero-shade { background: linear-gradient(90deg, var(--ink) 0%, color-mix(in srgb, var(--ink) 93%, transparent) 26%, color-mix(in srgb, var(--ink) 25%, transparent) 70%, transparent 100%); }
+  .surface-shadow { box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 2.5%, transparent); }
+  .chart-fill { fill: color-mix(in srgb, var(--chart-1) 6%, transparent); }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
