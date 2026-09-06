@@ -109,15 +109,16 @@ def load_commodity_prices():
 
 # Vessel specifications — single source of truth
 # Matches the team's existing specs from port_data.py and vessel_simultor.py
+# Includes LOA (Length Overall) and beam for full port constraint checking
 VESSEL_SPECS = {
-    "Capesize":  {"max_dwt": 180000, "max_draft": 18.0, "speed_knots": 13.5,
-                  "fuel_consumption_mt_day": 55, "daily_hire_usd": 18000},
-    "Panamax":   {"max_dwt": 80000,  "max_draft": 14.5, "speed_knots": 13.0,
-                  "fuel_consumption_mt_day": 35, "daily_hire_usd": 13000},
-    "Supramax":  {"max_dwt": 60000,  "max_draft": 12.0, "speed_knots": 12.5,
-                  "fuel_consumption_mt_day": 28, "daily_hire_usd": 11000},
-    "Handysize": {"max_dwt": 40000,  "max_draft": 10.5, "speed_knots": 11.5,
-                  "fuel_consumption_mt_day": 22, "daily_hire_usd": 9000},
+    "Capesize":  {"max_dwt": 180000, "max_draft": 18.0, "loa_m": 292, "beam_m": 45,
+                  "speed_knots": 13.5, "fuel_consumption_mt_day": 55, "daily_hire_usd": 18000},
+    "Panamax":   {"max_dwt": 80000,  "max_draft": 14.5, "loa_m": 229, "beam_m": 32.3,
+                  "speed_knots": 13.0, "fuel_consumption_mt_day": 35, "daily_hire_usd": 13000},
+    "Supramax":  {"max_dwt": 60000,  "max_draft": 12.0, "loa_m": 199, "beam_m": 32,
+                  "speed_knots": 12.5, "fuel_consumption_mt_day": 28, "daily_hire_usd": 11000},
+    "Handysize": {"max_dwt": 40000,  "max_draft": 10.5, "loa_m": 170, "beam_m": 27,
+                  "speed_knots": 11.5, "fuel_consumption_mt_day": 22, "daily_hire_usd": 9000},
 }
 
 # BDI multipliers per vessel type (from team's forecasting.py)

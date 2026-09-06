@@ -607,6 +607,192 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ---------- Risk Alerts ---------- */
+.volatility-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.volatility-badge.score-low {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.volatility-badge.score-med {
+  background: rgba(255, 184, 77, 0.12);
+  color: var(--accent-amber);
+  border: 1px solid rgba(255, 184, 77, 0.25);
+}
+
+.volatility-badge.score-high {
+  background: rgba(255, 92, 92, 0.12);
+  color: var(--accent-red);
+  border: 1px solid rgba(255, 92, 92, 0.25);
+}
+
+.risk-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+
+.risk-alert:last-child {
+  margin-bottom: 0;
+}
+
+.risk-alert.severity-critical {
+  background: rgba(255, 92, 92, 0.08);
+  border: 1px solid rgba(255, 92, 92, 0.2);
+}
+
+.risk-alert.severity-warning {
+  background: rgba(255, 184, 77, 0.08);
+  border: 1px solid rgba(255, 184, 77, 0.2);
+}
+
+.risk-alert.severity-info {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.risk-alert-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.risk-alert-body h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.risk-alert-body p {
+  font-size: 0.73rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ---------- Idle Management ---------- */
+.idle-strategy {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(124, 92, 255, 0.06);
+  border: 1px solid rgba(124, 92, 255, 0.15);
+  margin-bottom: 10px;
+}
+
+.idle-strategy.priority-high {
+  background: rgba(0, 212, 255, 0.06);
+  border-color: rgba(0, 212, 255, 0.15);
+}
+
+.idle-strategy.priority-medium {
+  background: rgba(124, 92, 255, 0.06);
+  border-color: rgba(124, 92, 255, 0.15);
+}
+
+.idle-strategy:last-child {
+  margin-bottom: 0;
+}
+
+.idle-strategy-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.idle-strategy-body h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.idle-strategy-body p {
+  font-size: 0.73rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Low Demand Windows */
+.low-demand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.low-demand-card {
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  text-align: center;
+}
+
+.low-demand-card .ld-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.low-demand-card .ld-days {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 2px;
+}
+
+.low-demand-card .ld-rate {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* ---------- Rejected Vessels ---------- */
+.rejected-vessel {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 92, 92, 0.05);
+  border: 1px solid rgba(255, 92, 92, 0.12);
+  margin-bottom: 8px;
+}
+
+.rejected-vessel:last-child {
+  margin-bottom: 0;
+}
+
+.rejected-vessel-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-red);
+}
+
+.rejected-vessel-reasons {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
 /* ---------- Footer ---------- */
 .footer {
   text-align: center;

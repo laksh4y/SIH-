@@ -136,9 +136,10 @@ async def get_voyage(origin_id: str, dest_id: str, vessel_type: str):
 @app.get("/api/feasibility")
 async def check_feasibility(origin_id: str, dest_id: str, cargo_mt: float = 100000):
     """Check which vessel types are feasible for a route."""
-    feasible = get_feasible_vessels(origin_id, dest_id, cargo_mt)
+    feasible, rejected = get_feasible_vessels(origin_id, dest_id, cargo_mt)
     return {
         "feasible_vessels": feasible,
+        "rejected_vessels": rejected,
         "origin_id": origin_id,
         "dest_id": dest_id,
         "cargo_volume_mt": cargo_mt,

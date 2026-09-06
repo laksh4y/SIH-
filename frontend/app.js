@@ -259,6 +259,20 @@ function renderResults(data) {
   // Timing Window
   renderTimingWindow(best);
 
+  // Risk Analysis (Requirement d)
+  if (data.risk_analysis) {
+    renderRiskAlerts(data.risk_analysis);
+  }
+
+  // Idle Scenario Management (Requirement c)
+  renderIdleStrategies(best);
+  renderLowDemandWindows(best);
+
+  // Rejected Vessels
+  if (data.rejected_vessels && data.rejected_vessels.length > 0) {
+    renderRejectedVessels(data.rejected_vessels);
+  }
+
   // Scroll to results
   document.getElementById('kpi-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -577,6 +591,116 @@ function renderTimingWindow(best) {
       </div>
     </div>
   `;
+}
+
+// ===== Risk Alerts (Requirement d) =====
+
+function renderRiskAlerts(risk) {
+  // Volatility badge
+  const badge = document.getElementById('volatility-badge');
+  const score = risk.volatility_score;
+  badge.textContent = `Volatility: ${score}/100`;
+  badge.className = 'volatility-badge';
+  if (score <= 35) badge.classList.add('score-low');
+  else if (score <= 65) badge.classList.add('score-med');
+  else badge.classList.add('score-high');
+
+  // Alert cards
+  const container = document.getElementById('risk-content');
+  container.innerHTML = '';
+
+  if (!risk.alerts || risk.alerts.length === 0) {
+    container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.8rem;">No risk alerts at this time.</p>';
+    return;
+  }
+
+  risk.alerts.forEach(alert => {
+    const el = document.createElement('div');
+    el.className = `risk-alert severity-${alert.severity}`;
+    el.innerHTML = `
+      <span class="risk-alert-icon">${alert.icon}</span>
+      <div class="risk-alert-body">
+        <h4>${alert.title}</h4>
+        <p>${alert.description}</p>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+// ===== Idle Scenario Management (Requirement c) =====
+
+function renderIdleStrategies(best) {
+  const container = document.getElementById('idle-strategies-content');
+  container.innerHTML = '';
+
+  const strategies = best.idle_strategies || [];
+  if (strategies.length === 0) {
+    container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.8rem;">No idle management actions needed.</p>';
+    return;
+  }
+
+  strategies.forEach(strategy => {
+    const el = document.createElement('div');
+    el.className = `idle-strategy priority-${strategy.priority}`;
+    el.innerHTML = `
+      <span class="idle-strategy-icon">${strategy.icon}</span>
+      <div class="idle-strategy-body">
+        <h4>${strategy.title}</h4>
+        <p>${strategy.description}</p>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+function renderLowDemandWindows(best) {
+  const container = document.getElementById('low-demand-content');
+  container.innerHTML = '';
+
+  const windows = best.low_demand_windows || [];
+  if (windows.length === 0) {
+    container.innerHTML = '<p style="color: var(--text-muted); font-size: 0.8rem;">Insufficient data for low-demand analysis.</p>';
+    return;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'low-demand-grid';
+
+  windows.forEach((w, idx) => {
+    const card = document.createElement('div');
+    card.className = 'low-demand-card';
+    card.innerHTML = `
+      <div class="ld-label">Low Demand Window #${idx + 1}</div>
+      <div class="ld-days">Day ${w.start_day} – ${w.end_day}</div>
+      <div class="ld-rate">Avg Rate: ${w.avg_rate.toFixed(0)} · Ideal for repositioning</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+}
+
+// ===== Rejected Vessels =====
+
+function renderRejectedVessels(rejected) {
+  const card = document.getElementById('rejected-card');
+  const container = document.getElementById('rejected-content');
+  card.style.display = 'block';
+  container.innerHTML = '';
+
+  rejected.forEach(rv => {
+    const el = document.createElement('div');
+    el.className = 'rejected-vessel';
+    el.innerHTML = `
+      <span class="risk-alert-icon">🚫</span>
+      <div>
+        <div class="rejected-vessel-name">${rv.vessel_type}</div>
+        <div class="rejected-vessel-reasons">${rv.reasons.join(' · ')}</div>
+      </div>
+    `;
+    container.appendChild(el);
+  });
 }
 
 // ===== Utilities =====
