@@ -2,7 +2,7 @@
 
 **Intelligent Freight Forecasting & Vessel Optimization for the Ministry of Steel, India**
 
-> 🏛️ SIH26006 · Smart Automation · Team Mindless Gamers · Delhi Technological University
+> 🏛️ SIH26006 · Smart Automation · Team Jaldi the layz · Delhi Technological University
 
 ---
 
@@ -92,6 +92,6 @@ SIH-dtu-team-mindless-gamers/
 
 ---
 
-## 👥 Team Mindless Gamers — DTU Delhi
+## 👥 Team Jaldi the layz — DTU Delhi
 
 Built for Smart India Hackathon 2026 · Problem Statement SIH26006 · Ministry of Steel
